@@ -3,9 +3,10 @@
    ======================================== */
 
 const { db } = require('../models/database');
+const nodemailer = require('nodemailer');
 
 // POST /api/contacts — Public: Submit contact form
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
   try {
     const { email, name, phone, message, plan } = req.body;
     const ip_address = req.ip || req.connection.remoteAddress;
@@ -19,6 +20,40 @@ exports.create = (req, res) => {
     try {
       db.prepare('INSERT OR IGNORE INTO subscribers (email) VALUES (?)').run(email);
     } catch (e) { /* ignore duplicate */ }
+
+    // Send email notification to admin
+    try {
+      const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST || 'smtp.gmail.com',
+        port: parseInt(process.env.SMTP_PORT) || 587,
+        secure: parseInt(process.env.SMTP_PORT) === 465, // true for 465, false for other ports
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+      });
+
+      const mailOptions = {
+        from: process.env.SMTP_FROM || '"Portfolio Contact" <noreply@portfolio.com>',
+        to: 'abdurakhimergashev@icloud.com',
+        subject: `Yangi xabar: Saytdan yangi murojaat tushdi!`,
+        html: `
+          <h3>Saytdan yangi murojaat (Contact Form)</h3>
+          <ul>
+            <li><strong>Email:</strong> ${email}</li>
+            <li><strong>Ism:</strong> ${name || 'Kiritilmagan'}</li>
+            <li><strong>Telefon:</strong> ${phone || 'Kiritilmagan'}</li>
+            <li><strong>Xabar:</strong> ${message || 'Kiritilmagan'}</li>
+            <li><strong>Tanlagan reja:</strong> ${plan || 'Kiritilmagan'}</li>
+          </ul>
+        `
+      };
+
+      await transporter.sendMail(mailOptions);
+      console.log('Email yuborildi: abdurakhimergashev@icloud.com');
+    } catch (mailError) {
+      console.error('Email yuborishda xatolik:', mailError);
+    }
 
     res.status(201).json({
       success: true,
