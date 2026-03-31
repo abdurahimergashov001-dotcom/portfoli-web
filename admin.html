@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--bg:#0f0f23;--card:#1a1a3e;--card2:#252550;--accent:#6C63FF;--accent2:#a78bfa;--text:#e2e2f0;--text2:#8888a0;--green:#43E97B;--red:#ff6584;--yellow:#F9A826;--radius:12px;--font:'Inter',sans-serif}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh}
+    .login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+    .login-box{background:var(--card);border-radius:var(--radius);padding:48px 40px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+    .login-box h1{text-align:center;margin-bottom:8px;font-size:1.6rem}
+    .login-box p{text-align:center;color:var(--text2);margin-bottom:32px;font-size:.9rem}
+    .form-group{margin-bottom:20px}
+    .form-group label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px;color:var(--text2)}
+    .form-group input{width:100%;padding:12px 16px;border:2px solid var(--card2);border-radius:8px;background:var(--bg);color:var(--text);font-size:.95rem;font-family:var(--font);transition:.3s}
+    .form-group input:focus{outline:none;border-color:var(--accent)}
+    .btn{width:100%;padding:14px;border:none;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:1rem;font-weight:700;cursor:pointer;font-family:var(--font);transition:.3s}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(108,99,255,.4)}
+    .btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+    .error-msg{color:var(--red);font-size:.85rem;text-align:center;margin-top:12px;min-height:20px}
+    /* Dashboard */
+    .dashboard{display:none}
+    .topbar{background:var(--card);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--card2)}
+    .topbar h2{font-size:1.1rem;display:flex;align-items:center;gap:10px}
+    .topbar-right{display:flex;align-items:center;gap:16px}
+    .topbar-right span{color:var(--text2);font-size:.85rem}
+    .btn-sm{padding:8px 18px;border:none;border-radius:6px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--font);transition:.2s}
+    .btn-danger{background:rgba(255,101,132,.15);color:var(--red)}.btn-danger:hover{background:rgba(255,101,132,.3)}
+    .layout{display:flex;min-height:calc(100vh - 60px)}
+    .sidebar{width:240px;background:var(--card);padding:20px 0;flex-shrink:0;border-right:1px solid var(--card2)}
+    .sidebar-item{display:flex;align-items:center;gap:12px;padding:12px 24px;color:var(--text2);font-size:.9rem;font-weight:500;cursor:pointer;transition:.2s;border-left:3px solid transparent}
+    .sidebar-item:hover,.sidebar-item.active{background:rgba(108,99,255,.08);color:var(--text);border-left-color:var(--accent)}
+    .main{flex:1;padding:32px;overflow-y:auto;max-height:calc(100vh - 60px)}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:32px}
+    .stat-card{background:var(--card);border-radius:var(--radius);padding:24px;border:1px solid var(--card2)}
+    .stat-card .label{font-size:.8rem;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+    .stat-card .value{font-size:2rem;font-weight:800;margin-top:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .data-card{background:var(--card);border-radius:var(--radius);padding:24px;border:1px solid var(--card2);margin-bottom:24px}
+    .data-card h3{font-size:1.1rem;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
+    table{width:100%;border-collapse:collapse}
+    th{text-align:left;padding:10px 12px;font-size:.8rem;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--card2)}
+    td{padding:10px 12px;font-size:.88rem;border-bottom:1px solid rgba(255,255,255,.04)}
+    tr:hover td{background:rgba(108,99,255,.04)}
+    .badge{display:inline-block;padding:4px 10px;border-radius:50px;font-size:.72rem;font-weight:600}
+    .badge-new{background:rgba(108,99,255,.15);color:var(--accent)}
+    .badge-read{background:rgba(67,233,123,.15);color:var(--green)}
+    .badge-replied{background:rgba(249,168,38,.15);color:var(--yellow)}
+    .badge-archived{background:rgba(136,136,160,.15);color:var(--text2)}
+    .btn-icon{background:none;border:none;color:var(--text2);cursor:pointer;padding:6px;border-radius:6px;transition:.2s;font-size:1rem}
+    .btn-icon:hover{background:rgba(108,99,255,.15);color:var(--accent)}
+    .btn-add{padding:8px 18px;border:none;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:.85rem;font-weight:600;cursor:pointer;font-family:var(--font);transition:.2s}
+    .btn-add:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(108,99,255,.3)}
+    /* Modal */
+    .modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:1000;align-items:center;justify-content:center}
+    .modal-overlay.active{display:flex}
+    .modal{background:var(--card);border-radius:var(--radius);padding:32px;width:90%;max-width:560px;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+    .modal h3{margin-bottom:24px;font-size:1.2rem}
+    .modal .form-group{margin-bottom:16px}
+    .modal-actions{display:flex;gap:12px;margin-top:24px}
+    .modal-actions .btn{flex:1}
+    .btn-cancel{background:var(--card2);color:var(--text2)}
+    .btn-cancel:hover{background:rgba(136,136,160,.2);transform:none;box-shadow:none}
+    .toast{position:fixed;bottom:24px;right:24px;background:var(--green);color:#000;padding:14px 24px;border-radius:8px;font-weight:600;font-size:.9rem;z-index:2000;transform:translateY(100px);opacity:0;transition:.4s}
+    .toast.show{transform:translateY(0);opacity:1}
+    .toast.error{background:var(--red);color:#fff}
+    .section-page{display:none}.section-page.active{display:block}
+    @media(max-width:768px){.sidebar{display:none}.main{padding:16px}.stats-grid{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+  <!-- LOGIN -->
+  <div class="login-wrap" id="loginWrap">
+    <div class="login-box">
+      <h1>🔐 Admin Panel</h1>
+      <p>Portfolio boshqaruv paneli</p>
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="admin@portfolio.com" required>
+        </div>
+        <div class="form-group">
+          <label>Parol</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn" id="loginBtn">Kirish</button>
+        <div class="error-msg" id="loginError"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="dashboard" id="dashboard">
+    <div class="topbar">
+      <h2>◆ Portfolio Admin</h2>
+      <div class="topbar-right">
+        <span id="adminName">Admin</span>
+        <button class="btn-sm btn-danger" onclick="logout()">Chiqish</button>
+      </div>
+    </div>
+    <div class="layout">
+      <div class="sidebar">
+        <div class="sidebar-item active" data-page="overview">📊 Umumiy</div>
+        <div class="sidebar-item" data-page="contacts">📩 Kontaktlar</div>
+        <div class="sidebar-item" data-page="reviews">⭐ Sharhlar</div>
+        <div class="sidebar-item" data-page="pricing">💰 Tariflar</div>
+        <div class="sidebar-item" data-page="faqs">❓ FAQ</div>
+        <div class="sidebar-item" data-page="advantages">🎯 Afzalliklar</div>
+        <div class="sidebar-item" data-page="stats">📈 Statistika</div>
+        <div class="sidebar-item" data-page="projects">🖼️ Loyihalar</div>
+        <div class="sidebar-item" data-page="subscribers">📧 Obunalar</div>
+        <div class="sidebar-item" data-page="settings">⚙️ Sozlamalar</div>
+      </div>
+      <div class="main" id="mainContent">
+        <!-- Overview -->
+        <div class="section-page active" id="page-overview">
+          <h2 style="margin-bottom:24px">📊 Umumiy ko'rinish</h2>
+          <div class="stats-grid" id="overviewStats"></div>
+          <div class="data-card"><h3>So'nggi kontaktlar</h3><table><thead><tr><th>Email</th><th>Ism</th><th>Status</th><th>Sana</th></tr></thead><tbody id="recentContacts"></tbody></table></div>
+        </div>
+        <!-- Contacts -->
+        <div class="section-page" id="page-contacts">
+          <h2 style="margin-bottom:24px">📩 Kontaktlar</h2>
+          <div class="data-card"><table><thead><tr><th>Email</th><th>Ism</th><th>Xabar</th><th>Tarif</th><th>Status</th><th>Sana</th><th>Amallar</th></tr></thead><tbody id="contactsTable"></tbody></table></div>
+        </div>
+        <!-- Reviews -->
+        <div class="section-page" id="page-reviews">
+          <h2 style="margin-bottom:24px">⭐ Sharhlar <button class="btn-add" onclick="openModal('review')">+ Yangi</button></h2>
+          <div class="data-card"><table><thead><tr><th>Muallif</th><th>Sharh</th><th>Baho</th><th>Ko'rinish</th><th>Amallar</th></tr></thead><tbody id="reviewsTable"></tbody></table></div>
+        </div>
+        <!-- FAQs -->
+        <div class="section-page" id="page-faqs">
+          <h2 style="margin-bottom:24px">❓ FAQ <button class="btn-add" onclick="openModal('faq')">+ Yangi</button></h2>
+          <div class="data-card"><table><thead><tr><th>Savol</th><th>Javob</th><th>Ko'rinish</th><th>Amallar</th></tr></thead><tbody id="faqsTable"></tbody></table></div>
+        </div>
+        <!-- Pricing -->
+        <div class="section-page" id="page-pricing">
+          <h2 style="margin-bottom:24px">💰 Tariflar <button class="btn-add" onclick="openModal('pricing')">+ Yangi</button></h2>
+          <div class="data-card" id="pricingCards"></div>
+        </div>
+        <!-- Advantages -->
+        <div class="section-page" id="page-advantages">
+          <h2 style="margin-bottom:24px">🎯 Afzalliklar <button class="btn-add" onclick="openModal('advantage')">+ Yangi</button></h2>
+          <div class="data-card"><table><thead><tr><th>Sarlavha</th><th>Tavsif</th><th>Rang</th><th>Amallar</th></tr></thead><tbody id="advantagesTable"></tbody></table></div>
+        </div>
+        <!-- Stats -->
+        <div class="section-page" id="page-stats">
+          <h2 style="margin-bottom:24px">📈 Statistika <button class="btn-add" onclick="openModal('stat')">+ Yangi</button></h2>
+          <div class="data-card"><table><thead><tr><th>Sarlavha</th><th>Qiymat</th><th>Qo'shimcha</th><th>Amallar</th></tr></thead><tbody id="statsTable"></tbody></table></div>
+        </div>
+        <!-- Projects -->
+        <div class="section-page" id="page-projects">
+          <h2 style="margin-bottom:24px">🖼️ Loyihalar <button class="btn-add" onclick="openModal('project')">+ Yangi</button></h2>
+          <div class="data-card"><table><thead><tr><th>Nomi</th><th>Kategoriya</th><th>Texnologiyalar</th><th>Ko'rinish</th><th>Amallar</th></tr></thead><tbody id="projectsTable"></tbody></table></div>
+        </div>
+        <!-- Subscribers -->
+        <div class="section-page" id="page-subscribers">
+          <h2 style="margin-bottom:24px">📧 Obunalar <button class="btn-add" onclick="exportSubscribers()">📥 CSV Export</button></h2>
+          <div class="data-card"><table><thead><tr><th>Email</th><th>Holat</th><th>Sana</th><th>Amallar</th></tr></thead><tbody id="subscribersTable"></tbody></table></div>
+        </div>
+        <!-- Settings -->
+        <div class="section-page" id="page-settings">
+          <h2 style="margin-bottom:24px">⚙️ Sozlamalar</h2>
+          <div class="data-card"><form id="settingsForm"></form><button class="btn-add" onclick="saveSettings()" style="margin-top:16px">💾 Saqlash</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h3 id="modalTitle">Yangi qo'shish</h3>
+      <form id="modalForm"></form>
+      <div class="modal-actions">
+        <button class="btn btn-cancel" onclick="closeModal()">Bekor qilish</button>
+        <button class="btn" onclick="submitModal()">Saqlash</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const API = '/api';
+    let token = localStorage.getItem('admin_token');
+    let currentPage = 'overview';
+    let modalType = '';
+    let editId = null;
+
+    // Auth headers
+    const authHeaders = () => ({ 'Content-Type':'application/json', 'Authorization': `Bearer ${token}` });
+    const pubHeaders = () => ({ 'Content-Type':'application/json' });
+
+    // Toast
+    function showToast(msg, isError=false) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.className = 'toast show' + (isError?' error':'');
+      setTimeout(() => t.className = 'toast', 3000);
+    }
+
+    // Check auth on load
+    if (token) { showDashboard(); } 
+
+    // Login
+    document.getElementById('loginForm').addEventListener('submit', async(e) => {
+      e.preventDefault();
+      const btn = document.getElementById('loginBtn');
+      btn.disabled = true;
+      try {
+        const res = await fetch(`${API}/auth/login`, {
+          method:'POST', headers: pubHeaders(),
+          body: JSON.stringify({ email: document.getElementById('loginEmail').value, password: document.getElementById('loginPassword').value })
+        });
+        const data = await res.json();
+        if (data.success) {
+          token = data.data.token;
+          localStorage.setItem('admin_token', token);
+          localStorage.setItem('admin_name', data.data.admin.name);
+          showDashboard();
+        } else {
+          document.getElementById('loginError').textContent = data.message;
+        }
+      } catch(err) { document.getElementById('loginError').textContent = 'Server bilan bog\'lanib bo\'lmadi'; }
+      btn.disabled = false;
+    });
+
+    function showDashboard() {
+      document.getElementById('loginWrap').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      document.getElementById('adminName').textContent = localStorage.getItem('admin_name') || 'Admin';
+      loadPage('overview');
+    }
+
+    function logout() {
+      token = null; localStorage.removeItem('admin_token'); localStorage.removeItem('admin_name');
+      document.getElementById('loginWrap').style.display = 'flex';
+      document.getElementById('dashboard').style.display = 'none';
+    }
+
+    // Sidebar navigation
+    document.querySelectorAll('.sidebar-item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        loadPage(item.dataset.page);
+      });
+    });
+
+    async function loadPage(page) {
+      currentPage = page;
+      document.querySelectorAll('.section-page').forEach(p => p.classList.remove('active'));
+      document.getElementById(`page-${page}`).classList.add('active');
+      
+      try {
+        if (page === 'overview') await loadOverview();
+        else if (page === 'contacts') await loadContacts();
+        else if (page === 'reviews') await loadReviews();
+        else if (page === 'faqs') await loadFaqs();
+        else if (page === 'pricing') await loadPricing();
+        else if (page === 'advantages') await loadAdvantages();
+        else if (page === 'stats') await loadStats();
+        else if (page === 'projects') await loadProjects();
+        else if (page === 'subscribers') await loadSubscribers();
+        else if (page === 'settings') await loadSettings();
+      } catch(err) { console.error(err); if(err.message?.includes('401')) logout(); }
+    }
+
+    async function apiFetch(url, opts={}) {
+      const res = await fetch(url, { ...opts, headers: authHeaders() });
+      if (res.status === 401) { logout(); throw new Error('401'); }
+      return res.json();
+    }
+
+    // OVERVIEW
+    async function loadOverview() {
+      const data = await apiFetch(`${API}/admin/dashboard`);
+      if (!data.success) return;
+      const o = data.data.overview;
+      document.getElementById('overviewStats').innerHTML = `
+        <div class="stat-card"><div class="label">Yangi kontaktlar</div><div class="value">${o.new_contacts}</div></div>
+        <div class="stat-card"><div class="label">Bugun</div><div class="value">${o.today_contacts}</div></div>
+        <div class="stat-card"><div class="label">Jami kontaktlar</div><div class="value">${o.total_contacts}</div></div>
+        <div class="stat-card"><div class="label">Obunchilar</div><div class="value">${o.active_subscribers}</div></div>
+        <div class="stat-card"><div class="label">Sharhlar</div><div class="value">${o.total_reviews}</div></div>
+        <div class="stat-card"><div class="label">Loyihalar</div><div class="value">${o.total_projects}</div></div>`;
+      const rc = data.data.recent_contacts;
+      document.getElementById('recentContacts').innerHTML = rc.map(c => `<tr><td>${c.email}</td><td>${c.name||'-'}</td><td><span class="badge badge-${c.status}">${c.status}</span></td><td>${new Date(c.created_at).toLocaleDateString()}</td></tr>`).join('');
+    }
+
+    // CONTACTS
+    async function loadContacts() {
+      const data = await apiFetch(`${API}/admin/contacts`);
+      if (!data.success) return;
+      document.getElementById('contactsTable').innerHTML = data.data.contacts.map(c => `<tr>
+        <td>${c.email}</td><td>${c.name||'-'}</td><td>${(c.message||'-').substring(0,50)}</td><td>${c.plan||'-'}</td>
+        <td><select onchange="updateContactStatus(${c.id},this.value)" style="background:var(--bg);color:var(--text);border:1px solid var(--card2);border-radius:4px;padding:4px 8px;font-size:.8rem">
+          ${['new','read','replied','archived'].map(s=>`<option value="${s}" ${c.status===s?'selected':''}>${s}</option>`).join('')}
+        </select></td><td>${new Date(c.created_at).toLocaleDateString()}</td>
+        <td><button class="btn-icon" onclick="deleteItem('contacts',${c.id})">🗑️</button></td></tr>`).join('');
+    }
+    async function updateContactStatus(id,status) {
+      await apiFetch(`${API}/admin/contacts/${id}/status`, { method:'PATCH', body: JSON.stringify({status}) });
+      showToast('Status yangilandi');
+    }
+
+    // REVIEWS
+    async function loadReviews() {
+      const data = await apiFetch(`${API}/admin/reviews`);
+      if (!data.success) return;
+      document.getElementById('reviewsTable').innerHTML = data.data.map(r => `<tr>
+        <td><strong>${r.author_name}</strong><br><small style="color:var(--text2)">${r.author_role||''} - ${r.author_company||''}</small></td>
+        <td>${r.text.substring(0,60)}...</td><td>${'★'.repeat(r.rating)}</td>
+        <td><button class="btn-icon" onclick="toggleVisibility('reviews',${r.id})">${r.is_visible?'👁️':'🚫'}</button></td>
+        <td><button class="btn-icon" onclick="editItem('review',${r.id})">✏️</button><button class="btn-icon" onclick="deleteItem('reviews',${r.id})">🗑️</button></td></tr>`).join('');
+    }
+
+    // FAQs
+    async function loadFaqs() {
+      const data = await apiFetch(`${API}/admin/faqs`);
+      if (!data.success) return;
+      document.getElementById('faqsTable').innerHTML = data.data.map(f => `<tr>
+        <td>${f.question.substring(0,50)}</td><td>${f.answer.substring(0,60)}...</td>
+        <td><button class="btn-icon" onclick="toggleVisibility('faqs',${f.id})">${f.is_visible?'👁️':'🚫'}</button></td>
+        <td><button class="btn-icon" onclick="editItem('faq',${f.id})">✏️</button><button class="btn-icon" onclick="deleteItem('faqs',${f.id})">🗑️</button></td></tr>`).join('');
+    }
+
+    // PRICING
+    async function loadPricing() {
+      const data = await apiFetch(`${API}/admin/pricing`);
+      if (!data.success) return;
+      document.getElementById('pricingCards').innerHTML = '<table><thead><tr><th>Nomi</th><th>Oylik</th><th>Yillik</th><th>Mashhur</th><th>Amallar</th></tr></thead><tbody>' +
+        data.data.map(p => `<tr><td><strong>${p.name}</strong><br><small style="color:var(--text2)">${p.description||''}</small></td><td>$${p.price_monthly}</td><td>$${p.price_yearly}</td><td>${p.is_popular?'⭐':'-'}</td>
+        <td><button class="btn-icon" onclick="editItem('pricing',${p.id})">✏️</button><button class="btn-icon" onclick="deleteItem('pricing',${p.id})">🗑️</button></td></tr>`).join('') + '</tbody></table>';
+    }
+
+    // ADVANTAGES
+    async function loadAdvantages() {
+      const data = await apiFetch(`${API}/admin/advantages`);
+      if (!data.success) return;
+      document.getElementById('advantagesTable').innerHTML = data.data.map(a => `<tr>
+        <td>${a.title}</td><td>${a.description.substring(0,60)}...</td><td><span style="display:inline-block;width:20px;height:20px;border-radius:4px;background:${a.icon_color}"></span></td>
+        <td><button class="btn-icon" onclick="editItem('advantage',${a.id})">✏️</button><button class="btn-icon" onclick="deleteItem('advantages',${a.id})">🗑️</button></td></tr>`).join('');
+    }
+
+    // STATS
+    async function loadStats() {
+      const data = await apiFetch(`${API}/admin/stats`);
+      if (!data.success) return;
+      document.getElementById('statsTable').innerHTML = data.data.map(s => `<tr>
+        <td>${s.label}</td><td>${s.value}</td><td>${s.suffix||''}</td>
+        <td><button class="btn-icon" onclick="editItem('stat',${s.id})">✏️</button><button class="btn-icon" onclick="deleteItem('stats',${s.id})">🗑️</button></td></tr>`).join('');
+    }
+
+    // PROJECTS
+    async function loadProjects() {
+      const data = await apiFetch(`${API}/admin/projects`);
+      if (!data.success) return;
+      document.getElementById('projectsTable').innerHTML = data.data.map(p => `<tr>
+        <td>${p.title}</td><td>${p.category||'-'}</td><td>${p.technologies||'-'}</td><td>${p.is_visible?'👁️':'🚫'}</td>
+        <td><button class="btn-icon" onclick="editItem('project',${p.id})">✏️</button><button class="btn-icon" onclick="deleteItem('projects',${p.id})">🗑️</button></td></tr>`).join('');
+    }
+
+    // SUBSCRIBERS
+    async function loadSubscribers() {
+      const data = await apiFetch(`${API}/admin/subscribers`);
+      if (!data.success) return;
+      document.getElementById('subscribersTable').innerHTML = data.data.subscribers.map(s => `<tr>
+        <td>${s.email}</td><td>${s.is_active?'<span class="badge badge-read">Faol</span>':'<span class="badge badge-archived">Nofaol</span>'}</td>
+        <td>${new Date(s.created_at).toLocaleDateString()}</td>
+        <td><button class="btn-icon" onclick="deleteItem('subscribers',${s.id})">🗑️</button></td></tr>`).join('');
+    }
+
+    // SETTINGS
+    async function loadSettings() {
+      const res = await fetch(`${API}/settings`);
+      const data = await res.json();
+      if (!data.success) return;
+      const keys = Object.keys(data.data);
+      document.getElementById('settingsForm').innerHTML = keys.map(k => `<div class="form-group"><label>${k}</label><input type="text" data-key="${k}" value="${data.data[k]||''}"></div>`).join('');
+    }
+    async function saveSettings() {
+      const inputs = document.querySelectorAll('#settingsForm input');
+      const settings = {};
+      inputs.forEach(i => { settings[i.dataset.key] = i.value; });
+      await apiFetch(`${API}/admin/settings/bulk`, { method:'PUT', body: JSON.stringify({settings}) });
+      showToast('Sozlamalar saqlandi!');
+    }
+
+    async function exportSubscribers() {
+      window.open(`${API}/admin/subscribers/export`, '_blank');
+    }
+
+    // CRUD Helpers
+    async function deleteItem(resource, id) {
+      if (!confirm("O'chirishni tasdiqlaysizmi?")) return;
+      await apiFetch(`${API}/admin/${resource}/${id}`, { method:'DELETE' });
+      showToast("O'chirildi"); loadPage(currentPage);
+    }
+
+    async function toggleVisibility(resource, id) {
+      await apiFetch(`${API}/admin/${resource}/${id}/visibility`, { method:'PATCH' });
+      showToast('Ko\'rinish yangilandi'); loadPage(currentPage);
+    }
+
+    // Modal
+    const formConfigs = {
+      review: [
+        {name:'author_name',label:'Muallif ismi',type:'text',required:true},
+        {name:'author_role',label:'Lavozimi',type:'text'},
+        {name:'author_company',label:'Kompaniya',type:'text'},
+        {name:'text',label:'Sharh matni',type:'textarea',required:true},
+        {name:'rating',label:'Baho (1-5)',type:'number',value:5},
+        {name:'author_color',label:'Rang',type:'color',value:'#6C63FF'}
+      ],
+      faq: [
+        {name:'question',label:'Savol',type:'text',required:true},
+        {name:'answer',label:'Javob',type:'textarea',required:true}
+      ],
+      pricing: [
+        {name:'name',label:'Tarif nomi',type:'text',required:true},
+        {name:'description',label:'Tavsif',type:'text'},
+        {name:'price_monthly',label:'Oylik narx ($)',type:'number',required:true},
+        {name:'price_yearly',label:'Yillik narx ($)',type:'number',required:true}
+      ],
+      advantage: [
+        {name:'title',label:'Sarlavha',type:'text',required:true},
+        {name:'description',label:'Tavsif',type:'textarea',required:true},
+        {name:'icon_color',label:'Rang',type:'color',value:'#6C63FF'}
+      ],
+      stat: [
+        {name:'label',label:'Sarlavha',type:'text',required:true},
+        {name:'value',label:'Qiymat',type:'number',required:true},
+        {name:'suffix',label:'Qo\'shimcha (+, ta, ...)',type:'text',value:'+'}
+      ],
+      project: [
+        {name:'title',label:'Nomi',type:'text',required:true},
+        {name:'description',label:'Tavsif',type:'textarea'},
+        {name:'category',label:'Kategoriya',type:'text'},
+        {name:'link',label:'Havola',type:'url'},
+        {name:'technologies',label:'Texnologiyalar',type:'text'}
+      ]
+    };
+
+    function openModal(type, data=null) {
+      modalType = type; editId = data?.id || null;
+      document.getElementById('modalTitle').textContent = editId ? 'Tahrirlash' : 'Yangi qo\'shish';
+      const config = formConfigs[type];
+      document.getElementById('modalForm').innerHTML = config.map(f => {
+        const val = data ? (data[f.name]||'') : (f.value||'');
+        if (f.type === 'textarea') return `<div class="form-group"><label>${f.label}</label><textarea name="${f.name}" rows="3" style="width:100%;padding:12px;border:2px solid var(--card2);border-radius:8px;background:var(--bg);color:var(--text);font-family:var(--font);resize:vertical" ${f.required?'required':''}>${val}</textarea></div>`;
+        return `<div class="form-group"><label>${f.label}</label><input type="${f.type}" name="${f.name}" value="${val}" ${f.required?'required':''} style="width:100%"></div>`;
+      }).join('');
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); editId=null; }
+
+    async function editItem(type, id) {
+      const resourceMap = {review:'reviews',faq:'faqs',pricing:'pricing',advantage:'advantages',stat:'stats',project:'projects'};
+      const data = await apiFetch(`${API}/admin/${resourceMap[type]}/${id}`);
+      if (data.success) openModal(type, data.data);
+    }
+
+    async function submitModal() {
+      const form = document.getElementById('modalForm');
+      const formData = {};
+      form.querySelectorAll('input,textarea').forEach(el => {
+        formData[el.name] = el.type==='number' ? Number(el.value) : el.value;
+      });
+      const resourceMap = {review:'reviews',faq:'faqs',pricing:'pricing',advantage:'advantages',stat:'stats',project:'projects'};
+      const url = editId ? `${API}/admin/${resourceMap[modalType]}/${editId}` : `${API}/admin/${resourceMap[modalType]}`;
+      const method = editId ? 'PUT' : 'POST';
+      const data = await apiFetch(url, { method, body: JSON.stringify(formData) });
+      if (data.success) { showToast(data.message); closeModal(); loadPage(currentPage); }
+      else showToast(data.message, true);
+    }
+
+    document.getElementById('modalOverlay').addEventListener('click', (e) => { if(e.target.id==='modalOverlay') closeModal(); });
+  </script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Creative Designer & Developer</title>
+  <meta name="description" content="Professional portfolio — I create outstanding digital products, websites and brands. 1200+ satisfied clients.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">◆</span> Portfolio
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#advantages">Advantages</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#cta" class="nav-cta">Start Project</a></li>
+      </ul>
+      <button class="burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-dots"></div>
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-container">
+      <div class="hero-left reveal">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          Available for new projects
+        </div>
+        <h1 class="hero-title">Creating <span class="gradient-text">digital products</span> that inspire</h1>
+        <p class="hero-subtitle">Design and development of websites, apps, and brands.<br>Transforming ideas into memorable visual experiences.</p>
+        <ul class="hero-checks">
+          <li><span class="check-icon">✓</span> Unique design for your brand</li>
+          <li><span class="check-icon">✓</span> Responsive layout and animations</li>
+          <li><span class="check-icon">✓</span> 24/7 Support and maintenance</li>
+        </ul>
+        <div class="hero-buttons">
+          <a href="#cta" class="btn btn-primary">Discuss project</a>
+          <a href="#advantages" class="btn btn-outline">Learn more</a>
+        </div>
+        <div class="hero-clients">
+          <div class="client-avatars">
+            <span class="avatar" style="background:#6C63FF;">AK</span>
+            <span class="avatar" style="background:#FF6584;">ML</span>
+            <span class="avatar" style="background:#43E97B;">DS</span>
+            <span class="avatar" style="background:#F9A826;">OV</span>
+            <span class="avatar" style="background:#6C63FF;">IP</span>
+          </div>
+          <span class="clients-text"><strong>1200+</strong> satisfied clients</span>
+        </div>
+      </div>
+      <div class="hero-right reveal">
+        <div class="hero-image-wrapper">
+          <div class="hero-image-glow"></div>
+          <img src="hero_photo.png" alt="Creative designer at work" class="hero-image">
+          <div class="hero-floating-card">
+            <div class="floating-card-stars">★★★★★</div>
+            <div class="floating-card-value">4.9 / 5.0</div>
+            <div class="floating-card-label">Average rating</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <section class="marquee-section">
+    <div class="marquee-track">
+      <div class="marquee-content">
+        <span>Behance</span><span class="marquee-dot">◆</span>
+        <span>Dribbble</span><span class="marquee-dot">◆</span>
+        <span>Figma</span><span class="marquee-dot">◆</span>
+        <span>Adobe</span><span class="marquee-dot">◆</span>
+        <span>Awwwards</span><span class="marquee-dot">◆</span>
+        <span>Webflow</span><span class="marquee-dot">◆</span>
+        <span>Framer</span><span class="marquee-dot">◆</span>
+        <span>Tilda</span><span class="marquee-dot">◆</span>
+        <span>Notion</span><span class="marquee-dot">◆</span>
+        <span>Readymag</span><span class="marquee-dot">◆</span>
+        <span>Behance</span><span class="marquee-dot">◆</span>
+        <span>Dribbble</span><span class="marquee-dot">◆</span>
+        <span>Figma</span><span class="marquee-dot">◆</span>
+        <span>Adobe</span><span class="marquee-dot">◆</span>
+        <span>Awwwards</span><span class="marquee-dot">◆</span>
+        <span>Webflow</span><span class="marquee-dot">◆</span>
+        <span>Framer</span><span class="marquee-dot">◆</span>
+        <span>Tilda</span><span class="marquee-dot">◆</span>
+        <span>Notion</span><span class="marquee-dot">◆</span>
+        <span>Readymag</span><span class="marquee-dot">◆</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVANTAGES -->
+  <section class="advantages" id="advantages">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">Why me</span>
+        <h2 class="section-title">Advantages of working <span class="gradient-text">with me</span></h2>
+        <p class="section-subtitle">Every project features a unique approach, attention to detail, and results that exceed expectations</p>
+      </div>
+      <div class="advantages-grid">
+        <div class="advantage-card reveal">
+          <div class="advantage-icon" style="background: linear-gradient(135deg, #6C63FF22, #6C63FF44);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Unique design</h3>
+          <p>No templates — every project is created from scratch, reflecting the individuality of your brand and target audience.</p>
+        </div>
+        <div class="advantage-card reveal">
+          <div class="advantage-icon" style="background: linear-gradient(135deg, #FF658422, #FF658444);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF6584" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Responsiveness</h3>
+          <p>All projects display perfectly on any devices — from mobile phones to widescreen monitors.</p>
+        </div>
+        <div class="advantage-card reveal">
+          <div class="advantage-icon" style="background: linear-gradient(135deg, #43E97B22, #43E97B44);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#43E97B" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Fast loading</h3>
+          <p>Optimized code and modern technologies ensure lightning-fast website loading speeds.</p>
+        </div>
+        <div class="advantage-card reveal">
+          <div class="advantage-icon" style="background: linear-gradient(135deg, #F9A82622, #F9A82644);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F9A826" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <h3>UX-oriented</h3>
+          <p>I design interfaces that are intuitively understandable to users and increase business conversion.</p>
+        </div>
+        <div class="advantage-card reveal">
+          <div class="advantage-icon" style="background: linear-gradient(135deg, #6C63FF22, #6C63FF44);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Clean code</h3>
+          <p>Semantic layout, valid HTML/CSS, and best development practices for stable and secure project operations.</p>
+        </div>
+        <div class="advantage-card reveal">
+          <div class="advantage-icon" style="background: linear-gradient(135deg, #FF658422, #FF658444);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF6584" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <h3>24/7 Support</h3>
+          <p>Full support after launch: updates, improvements, and prompt resolution of any issues.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats" id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="1200">0</span><span class="stat-plus">+</span>
+          <span class="stat-label">Satisfied clients</span>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="350">0</span><span class="stat-plus">+</span>
+          <span class="stat-label">Completed projects</span>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="8">0</span>
+          <span class="stat-label">Years of experience</span>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="15">0</span>
+          <span class="stat-label">Awards and honors</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">How it works</span>
+        <h2 class="section-title">Three steps to the <span class="gradient-text">perfect result</span></h2>
+        <p class="section-subtitle">Transparent and clear workflow from idea to launch</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step reveal">
+          <div class="step-number">01</div>
+          <div class="step-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <h3>Discussion</h3>
+          <p>We meet, discuss your goals, target audience, and project preferences.</p>
+        </div>
+        <div class="step-connector">
+          <svg width="60" height="24" viewBox="0 0 60 24"><path d="M0 12h50" stroke="#6C63FF" stroke-width="2" stroke-dasharray="6 4" fill="none"/><path d="M46 6l8 6-8 6" stroke="#6C63FF" stroke-width="2" fill="none"/></svg>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-number">02</div>
+          <div class="step-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+          </div>
+          <h3>Design & Development</h3>
+          <p>I create mockups, get your approval, then code and assemble all functionalities.</p>
+        </div>
+        <div class="step-connector">
+          <svg width="60" height="24" viewBox="0 0 60 24"><path d="M0 12h50" stroke="#6C63FF" stroke-width="2" stroke-dasharray="6 4" fill="none"/><path d="M46 6l8 6-8 6" stroke="#6C63FF" stroke-width="2" fill="none"/></svg>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-number">03</div>
+          <div class="step-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>Project Launch</h3>
+          <p>We test, publish, and set up analytics. You receive a fully finished product.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">Reviews</span>
+        <h2 class="section-title">What clients <span class="gradient-text">say</span></h2>
+        <p class="section-subtitle">Real feedback from people I've had the pleasure of working with</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card reveal">
+          <div class="review-quote">"</div>
+          <p class="review-text">The result exceeded all expectations! The site turned out not just beautiful, but truly functional. Conversions increased by 40% in the very first month after launch.</p>
+          <div class="review-stars">★★★★★</div>
+          <div class="review-author">
+            <div class="review-avatar" style="background: linear-gradient(135deg, #6C63FF, #a78bfa);">AK</div>
+            <div>
+              <div class="review-name">Alexey Kozlov</div>
+              <div class="review-role">CEO, TechStart</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-quote">"</div>
+          <p class="review-text">Professional approach at every stage. All deadlines were met, and communication was top-notch. Highly recommended for serious projects!</p>
+          <div class="review-stars">★★★★★</div>
+          <div class="review-author">
+            <div class="review-avatar" style="background: linear-gradient(135deg, #FF6584, #ff8fa3);">ML</div>
+            <div>
+              <div class="review-name">Maria Lebedeva</div>
+              <div class="review-role">Founder, Bloom Studio</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-quote">"</div>
+          <p class="review-text">Amazing attention to detail and a deep understanding of UX. Our app became significantly more user-friendly, and users appreciate the modern, pleasant design.</p>
+          <div class="review-stars">★★★★★</div>
+          <div class="review-author">
+            <div class="review-avatar" style="background: linear-gradient(135deg, #43E97B, #38f9d7);">DS</div>
+            <div>
+              <div class="review-name">Dmitry Sokolov</div>
+              <div class="review-role">CTO, FinFlow</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">Pricing</span>
+        <h2 class="section-title">Transparent <span class="gradient-text">rates</span></h2>
+        <p class="section-subtitle">Choose a suitable plan or let's discuss custom terms</p>
+      </div>
+      <div class="pricing-toggle reveal">
+        <span class="toggle-label active" id="toggleMonth">Monthly</span>
+        <button class="toggle-switch" id="pricingToggle" aria-label="Toggle Period">
+          <span class="toggle-knob"></span>
+        </button>
+        <span class="toggle-label" id="toggleYear">Yearly <span class="toggle-discount">-20%</span></span>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card reveal">
+          <h3 class="pricing-name">Basic</h3>
+          <p class="pricing-desc">Ideal for landing pages and portfolios</p>
+          <div class="pricing-price">
+            <span class="price-value" data-month="250" data-year="200">250</span>
+            <span class="price-currency">$</span>
+            <span class="price-period">/ <span class="period-text">mo</span></span>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check-icon">✓</span> Design up to 5 pages</li>
+            <li><span class="check-icon">✓</span> Responsive layout</li>
+            <li><span class="check-icon">✓</span> Basic SEO optimization</li>
+            <li><span class="check-icon">✓</span> 1 revision round</li>
+            <li class="disabled"><span class="check-icon">✗</span> Custom animations & microinteractions</li>
+            <li class="disabled"><span class="check-icon">✗</span> Priority support</li>
+          </ul>
+          <a href="#cta" class="btn btn-outline btn-block">Choose Plan</a>
+        </div>
+        <div class="pricing-card pricing-card-popular reveal">
+          <div class="popular-badge">Popular</div>
+          <h3 class="pricing-name">Professional</h3>
+          <p class="pricing-desc">For businesses and startups</p>
+          <div class="pricing-price">
+            <span class="price-value" data-month="550" data-year="440">550</span>
+            <span class="price-currency">$</span>
+            <span class="price-period">/ <span class="period-text">mo</span></span>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check-icon">✓</span> Design up to 15 pages</li>
+            <li><span class="check-icon">✓</span> Responsive layout</li>
+            <li><span class="check-icon">✓</span> Advanced SEO optimization</li>
+            <li><span class="check-icon">✓</span> 3 revision rounds</li>
+            <li><span class="check-icon">✓</span> Custom animations & microinteractions</li>
+            <li><span class="check-icon">✓</span> Priority support</li>
+          </ul>
+          <a href="#cta" class="btn btn-primary btn-block">Choose Plan</a>
+        </div>
+        <div class="pricing-card reveal">
+          <h3 class="pricing-name">Premium</h3>
+          <p class="pricing-desc">Comprehensive digital solutions</p>
+          <div class="pricing-price">
+            <span class="price-value" data-month="1200" data-year="960">1200</span>
+            <span class="price-currency">$</span>
+            <span class="price-period">/ <span class="period-text">mo</span></span>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check-icon">✓</span> Unlimited pages</li>
+            <li><span class="check-icon">✓</span> Responsive layout</li>
+            <li><span class="check-icon">✓</span> Full SEO + Analytics setup</li>
+            <li><span class="check-icon">✓</span> Unlimited revisions</li>
+            <li><span class="check-icon">✓</span> Exclusive custom animations</li>
+            <li><span class="check-icon">✓</span> Dedicated project manager</li>
+          </ul>
+          <a href="#cta" class="btn btn-outline btn-block">Choose Plan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">FAQ</span>
+        <h2 class="section-title">Frequently asked <span class="gradient-text">questions</span></h2>
+        <p class="section-subtitle">Answers to the most popular questions about my workflow</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span>How long does it take to create a website?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Timelines depend on the project's complexity. A landing page usually takes 5-7 working days, a corporate site 2-4 weeks, and complex web apps from 1 month. Exact timelines are discussed after the initial brief.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span>What technologies do you use?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>I work with a modern tech stack: Figma for design, HTML/CSS/JavaScript for frontend layouts, and React/Next.js for complex interfaces. For CMS, I use WordPress or headless solutions.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span>Can I request changes after launch?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, absolutely! All plans include a set number of revision rounds. Ongoing support and further project enhancements are also available via a separate agreement.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span>How does payment work?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>I work with a 50% upfront payment before starting the project, and the remaining 50% is due after final approval. For larger projects, milestone-based payments are possible. I accept bank transfers and popular electronic payment methods.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span>Do you provide source files?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, upon project completion, you will receive all design source files (Figma), source code, and comprehensive documentation to manage your site.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="cta">
+    <div class="container">
+      <div class="cta-content reveal">
+        <h2>Ready to start your project?</h2>
+        <p>Leave your email and I will get back to you within 24 hours to discuss the details</p>
+        <form class="cta-form" id="ctaForm">
+          <input type="email" placeholder="Your email address" required class="cta-input" id="ctaEmail">
+          <button type="submit" class="btn btn-cta">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo"><span class="logo-icon">◆</span> Portfolio</a>
+          <p>Creating digital products that help businesses grow and stand out from the competition.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Telegram" class="social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn" class="social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="#" aria-label="Behance" class="social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.938 4.503c.702 0 1.34.06 1.92.188.577.13 1.07.33 1.485.61.41.28.733.65.96 1.12.225.47.34 1.05.34 1.73 0 .74-.17 1.36-.507 1.86-.338.5-.837.9-1.502 1.22.906.26 1.576.72 2.022 1.37.448.66.665 1.45.665 2.36 0 .75-.13 1.39-.41 1.93-.28.55-.67 1-1.16 1.35-.48.348-1.05.6-1.67.767-.63.165-1.3.25-2.01.25H0V4.51h6.938v-.007zM6.545 10.16c.605 0 1.11-.15 1.52-.45.41-.3.617-.745.617-1.35 0-.35-.062-.63-.19-.85-.13-.22-.3-.39-.52-.52-.218-.13-.47-.22-.76-.27-.29-.05-.6-.08-.93-.08H3.53v3.52h3.015zm.185 5.98c.36 0 .7-.04 1.01-.12.31-.08.58-.21.81-.39.23-.18.41-.42.54-.71.13-.29.2-.65.2-1.06 0-.82-.23-1.41-.69-1.77-.46-.36-1.06-.54-1.8-.54H3.53v4.59h3.2zM15.834 4.86h6.06v1.58h-6.06V4.86zM22.64 11.645c-.148-.42-.374-.79-.678-1.1-.304-.31-.68-.557-1.13-.74-.445-.18-.96-.274-1.537-.274-.577 0-1.09.097-1.54.29-.45.19-.83.45-1.14.78-.31.33-.55.72-.72 1.18-.17.46-.26.95-.28 1.49h6.058c.03-.59-.074-1.21-.033-1.626zM22.005 17.643c-.41.46-.947.79-1.614.998.67-.21 1.2-.54 1.614-.998zM18.858 18.287c.66 0 1.23-.16 1.72-.47.488-.31.815-.76.98-1.35h2.135c-.36 1.28-.96 2.23-1.796 2.84-.836.61-1.874.92-3.114.92-.87 0-1.63-.14-2.31-.42-.674-.28-1.24-.67-1.7-1.17-.457-.5-.807-1.09-1.05-1.78-.24-.69-.36-1.44-.36-2.26 0-.79.12-1.52.36-2.2.24-.68.585-1.27 1.03-1.78.448-.51 1-.91 1.65-1.2.65-.29 1.39-.44 2.22-.44.9 0 1.67.18 2.32.53.65.35 1.18.82 1.6 1.39.42.57.72 1.22.9 1.95.18.73.24 1.49.17 2.28H17.66c-.04.89.2 1.58.72 2.07.52.49 1.17.73 1.96.73l-.482.08z"/></svg>
+            </a>
+            <a href="#" aria-label="Dribbble" class="social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.358c-.35-.11-3.17-.953-6.384-.438 1.34 3.684 1.887 6.684 1.992 7.308 2.3-1.555 3.936-4.02 4.395-6.87zm-6.115 7.808c-.153-.9-.75-4.032-2.19-7.77l-.066.02c-5.79 2.015-7.86 6.025-8.04 6.4 1.73 1.358 3.92 2.166 6.29 2.166 1.42 0 2.77-.29 4-.814zm-11.62-2.58c.232-.4 3.045-5.055 8.332-6.765.135-.045.27-.084.405-.12-.26-.585-.54-1.167-.832-1.74C7.17 11.775 2.206 11.71 1.756 11.7l-.004.312c0 2.633.998 5.037 2.634 6.855zm-2.42-8.955c.46.008 4.683.026 9.477-1.248-1.698-3.018-3.53-5.558-3.8-5.928-2.868 1.35-5.01 3.99-5.676 7.17zM9.6 2.052c.282.38 2.145 2.914 3.822 6 3.645-1.365 5.19-3.44 5.373-3.702C16.86 2.61 14.545 1.62 12 1.62c-.824 0-1.63.1-2.4.282v.15zm10.335 3.483c-.218.29-1.91 2.493-5.7 4.03.244.498.478 1.005.69 1.51.075.18.15.36.22.53 3.41-.43 6.8.26 7.14.33-.02-2.42-.88-4.64-2.35-6.4z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#advantages">Advantages</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Branding</a></li>
+            <li><a href="#">UI/UX Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacts</h4>
+          <ul>
+            <li><a href="mailto:hello@portfolio.com">hello@portfolio.com</a></li>
+            <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+            <li><a href="#">New York, USA</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Portfolio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
