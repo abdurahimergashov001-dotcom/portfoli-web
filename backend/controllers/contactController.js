@@ -49,10 +49,11 @@ exports.create = async (req, res) => {
         `
       };
 
-      await transporter.sendMail(mailOptions);
-      console.log('Email yuborildi: abdurakhimergashev@icloud.com');
-    } catch (mailError) {
-      console.error('Email yuborishda xatolik:', mailError);
+      transporter.sendMail(mailOptions)
+        .then(() => console.log('Email yuborildi: abdurakhimergashev@icloud.com'))
+        .catch(mailError => console.error('Email yuborishda xatolik:', mailError));
+    } catch (mailSetupError) {
+      console.error('Nodemailer sozlamasida xatolik:', mailSetupError);
     }
 
     res.status(201).json({
